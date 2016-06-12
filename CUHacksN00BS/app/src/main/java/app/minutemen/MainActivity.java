@@ -12,19 +12,22 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
-
-//    private MapWrapper map;
+public class MainActivity extends AppCompatActivity
+//        implements OnMapReadyCallback
+{
 
     private int num;
 
-    private DatabaseReference ref;
+//    private GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         num = 0;
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        ref = database.getReference("minutemen");
+        Utils.ref.setValue(num);
 
-        ref.setValue(num);
-
-        ref.addValueEventListener(new ValueEventListener() {
+        Utils.ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.println(Log.INFO, "idk", dataSnapshot.getValue().toString());
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ref.setValue(num + 1);
+                Utils.ref.setValue(num + 1);
                 Snackbar.make(view, "Clicks: " + num, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
 
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
 //                .findFragmentById(R.id.map);
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
      */
 //    @Override
 //    public void onMapReady(GoogleMap googleMap) {
-//        map = new MapWrapper(googleMap);
+//        map = googleMap;
 //
 //        // Add a marker in Sydney and move the camera
 ////        LatLng sydney = new LatLng(-34, 151);

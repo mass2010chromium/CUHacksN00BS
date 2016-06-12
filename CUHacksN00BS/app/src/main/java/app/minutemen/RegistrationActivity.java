@@ -1,5 +1,6 @@
 package app.minutemen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,10 +8,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.CheckBox;
+import android.widget.EditText;
+
+import com.google.firebase.database.DatabaseReference;
 
 public class RegistrationActivity extends AppCompatActivity {
     public boolean nameComplete = false;
+
+    EditText name;
+    CheckBox adult;
+    CheckBox child;
+    CheckBox infant;
+    EditText expire;
+    Button done;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +39,33 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-        TextView editText = Utils.getComponent(R.id.editText, this);
-        Button done = Utils.getComponent(R.id.doneButton, this);
-
+        name = Utils.getComponent(R.id.editText, this);
+        adult = Utils.getComponent(R.id.adultCheckBox, this);
+        child = Utils.getComponent(R.id.childCheckBox, this);
+        infant = Utils.getComponent(R.id.infantCheckBox, this);
+        expire = Utils.getComponent(R.id.dateText, this);
+        done = Utils.getComponent(R.id.doneButton, this);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference ref = Utils.ref.child(name.getText().toString());
+                DatabaseReference adultRef = ref.child("adult");
+                adultRef.setValue(adult.isActivated());
+                DatabaseReference childRef = ref.child("child");
+                childRef.setValue(child.isActivated());
+                DatabaseReference infantRef = ref.child("infant");
+                infantRef.setValue(infant.isActivated());
+                DatabaseReference expireRef = ref.child("expire");
+                expireRef.setValue(expire.getText().toString());
+                switchToStart();
+            }
+        });
     }
 
-    public void onClick(View v){
-
+    //TEMP
+    public void switchToStart(){
+        Intent intent = new Intent(this, StartActivity.class);
+        startActivity(intent);
     }
 
 }
