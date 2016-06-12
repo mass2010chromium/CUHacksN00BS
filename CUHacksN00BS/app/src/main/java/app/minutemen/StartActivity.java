@@ -53,26 +53,6 @@ public class StartActivity extends AppCompatActivity
 //            }
 //        });
 //        connectThread.start();
-        Utils.helpRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                for (DataSnapshot child : children) {
-                    DataSnapshot lat = child.child("lat");
-                    DataSnapshot lon = child.child("lon");
-
-                    Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat.getValue() + "," + lon.getValue());
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                    mapIntent.setPackage("com.google.android.apps.maps");
-                    startActivity(mapIntent);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     public void callHelp(View view) {
@@ -100,7 +80,27 @@ public class StartActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void standby(View view){
+    public void standby(View view) {
+        Utils.helpRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for (DataSnapshot child : children) {
+                    DataSnapshot lat = child.child("lat");
+                    DataSnapshot lon = child.child("lon");
+
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat.getValue() + "," + lon.getValue());
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         Intent intent = new Intent(this, WaitActivity.class);
         startActivity(intent);
     }
