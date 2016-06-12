@@ -23,7 +23,9 @@ public class HelpOnWay extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.child("minutemenHelp").child(Settings.Secure.ANDROID_ID).getChildren()) {
                     if (child.getKey().toString().length() > 3) {
-                        mainText.setText(dataSnapshot.child("minutemen").child(child.getValue().toString()).child("name").getValue().toString());
+                        mainText.setText(dataSnapshot.child("minutemen").child(child.getValue().toString()).
+                                child("name").getValue().toString() + " is coming here to help!");
+                        break;
                     }
                 }
             }
