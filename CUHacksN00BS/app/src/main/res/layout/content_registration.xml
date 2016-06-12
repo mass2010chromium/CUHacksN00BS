@@ -27,7 +27,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
         android:id="@+id/editText"
         android:layout_alignTop="@+id/nameLabel"
@@ -93,8 +92,7 @@
         android:id="@+id/dateText"
         android:layout_below="@+id/renewalText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:text="Date" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
