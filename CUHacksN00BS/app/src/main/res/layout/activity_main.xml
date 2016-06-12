@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.minutemen.MainActivity">
+    tools:context="app.minutemen.MainActivity"
+    tools:showIn="@layout/content_main">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -31,15 +32,36 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top">
 
-        <fragment
-            class="com.google.android.gms.maps.MapFragment"
+<<<<<<< HEAD
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="60dp"
+            android:id="@+id/space" />
 
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="app.minutemen.MapsActivity"
+            android:layout_below="@+id/space" />
+
+    </RelativeLayout>
+    <!--<fragment-->
+    <!--android:id="@+id/map"-->
+    <!--class="com.google.android.gms.maps.MapFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:context="app.minutemen.MapsActivity"/>-->
+=======
     </FrameLayout>
+>>>>>>> origin/master
 
 </android.support.design.widget.CoordinatorLayout>
