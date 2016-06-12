@@ -27,7 +27,7 @@
         android:onClick="callHelp" />
 
     <Button
-        android:layout_width="173dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Register as CPR Trained"
         android:id="@+id/verifybutton"
@@ -38,15 +38,4 @@
         android:textSize="24dp"
         android:onClick="displayRegistration" />
 
-    <Button
-        android:layout_width="173dp"
-        android:layout_height="wrap_content"
-        android:text="Receive Events"
-        android:id="@+id/receivebutton"
-        android:height="100dp"
-        android:textSize="24dp"
-        android:onClick="standby"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/helpbutton"
-        android:layout_alignEnd="@+id/helpbutton" />
 </RelativeLayout>
