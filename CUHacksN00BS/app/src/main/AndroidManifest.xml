@@ -52,7 +52,8 @@
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".VerificationCompletion" />
-        <activity android:name=".HelpOnWay"></activity>
+        <activity android:name=".HelpOnWay" />
+        <activity android:name=".WaitActivity"></activity>
     </application>
 
 </manifest>

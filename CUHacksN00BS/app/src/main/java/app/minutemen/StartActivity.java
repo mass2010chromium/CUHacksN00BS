@@ -100,6 +100,11 @@ public class StartActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void standby(View view){
+        Intent intent = new Intent(this, WaitActivity.class);
+        startActivity(intent);
+    }
+
 
 //    @Override
 //    public void onConnected(@Nullable Bundle bundle) {
