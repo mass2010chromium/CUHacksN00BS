@@ -18,8 +18,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
     EditText name;
     CheckBox adult;
+    ButtonToggle aToggle;
     CheckBox child;
+    ButtonToggle cToggle;
     CheckBox infant;
+    ButtonToggle iToggle;
     EditText expire;
     Button done;
 
@@ -41,9 +44,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //An object for each component.
         name = Utils.getComponent(R.id.editText, this);
+
         adult = Utils.getComponent(R.id.adultCheckBox, this);
+        aToggle = new ButtonToggle(adult, false);
         child = Utils.getComponent(R.id.childCheckBox, this);
+        cToggle= new ButtonToggle(child, false);
         infant = Utils.getComponent(R.id.infantCheckBox, this);
+        iToggle = new ButtonToggle(infant, false);
+
         expire = Utils.getComponent(R.id.dateText, this);
         done = Utils.getComponent(R.id.doneButton, this);
         done.setOnClickListener(new View.OnClickListener() {
@@ -52,11 +60,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 //Write each component to firebase.
                 DatabaseReference ref = Utils.userRef.child(name.getText().toString());
                 DatabaseReference adultRef = ref.child("adult");
-                adultRef.setValue(adult.isActivated());
+                adultRef.setValue(aToggle.clicked);
                 DatabaseReference childRef = ref.child("child");
-                childRef.setValue(child.isActivated());
+                childRef.setValue(cToggle.clicked);
                 DatabaseReference infantRef = ref.child("infant");
-                infantRef.setValue(infant.isActivated());
+                infantRef.setValue(iToggle.clicked);
                 DatabaseReference expireRef = ref.child("expire");
                 expireRef.setValue(expire.getText().toString());
 
@@ -72,4 +80,18 @@ public class RegistrationActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private static class ButtonToggle implements View.OnClickListener{
+
+        public boolean clicked;
+
+        public ButtonToggle(CheckBox box, boolean state) {
+            box.setOnClickListener(this);
+            this.clicked = state;
+        }
+
+        @Override
+        public void onClick(View v) {
+            clicked = !clicked;
+        }
+    }
 }
