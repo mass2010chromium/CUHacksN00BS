@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,13 +24,13 @@ public class WaitActivity extends AppCompatActivity {
     }
 
     //TODO
-    public void onDecline() {
+    public void onDecline(View v) {
         Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
     }
 
     //TODO
-    public void onAccept() {
+    public void onAccept(View v) {
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat + "," + lon);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
