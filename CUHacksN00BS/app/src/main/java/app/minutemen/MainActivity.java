@@ -38,38 +38,38 @@ public class MainActivity extends AppCompatActivity
 
         num = 0;
 
-        Utils.ref.setValue(num);
-
-        Utils.ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.println(Log.INFO, "idk", dataSnapshot.getValue().toString());
-                try {
-                    num = Integer.parseInt(dataSnapshot.getValue().toString());
-                } catch (Exception e) {
-                    Log.println(Log.INFO, "WTH", "Value was not an int!");
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        Utils.userRef.setValue(num);
+//
+//        Utils.userRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Log.println(Log.INFO, "idk", dataSnapshot.getValue().toString());
+//                try {
+//                    num = Integer.parseInt(dataSnapshot.getValue().toString());
+//                } catch (Exception e) {
+//                    Log.println(Log.INFO, "WTH", "Value was not an int!");
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
         FloatingActionButton fab = Utils.getComponent(R.id.fab, this);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utils.ref.setValue(num + 1);
-                Snackbar.make(view, "Clicks: " + num, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Utils.userRef.setValue(num + 1);
+//                Snackbar.make(view, "Clicks: " + num, Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
-        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-        mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
+//        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+//        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//        mapIntent.setPackage("com.google.android.apps.maps");
+//        startActivity(mapIntent);
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
 //                .findFragmentById(R.id.map);
 //        mapFragment.getMapAsync(this);

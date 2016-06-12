@@ -24,7 +24,7 @@
         android:backgroundTint="@color/design_textinput_error_color_light"
         android:textColor="#ffffff"
         android:layout_above="@+id/verifybutton"
-        android:onClick="displayMap" />
+        android:onClick="callHelp" />
 
     <Button
         android:layout_width="wrap_content"

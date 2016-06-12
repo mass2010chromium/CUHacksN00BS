@@ -50,7 +50,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Write each component to firebase.
-                DatabaseReference ref = Utils.ref.child(name.getText().toString());
+                DatabaseReference ref = Utils.userRef.child(name.getText().toString());
                 DatabaseReference adultRef = ref.child("adult");
                 adultRef.setValue(adult.isActivated());
                 DatabaseReference childRef = ref.child("child");
