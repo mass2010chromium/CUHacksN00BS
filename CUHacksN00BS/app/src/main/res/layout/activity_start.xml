@@ -14,11 +14,27 @@
         android:layout_height="wrap_content"
         android:text="HELP"
         android:id="@+id/button2"
-        android:height="200dp"
+        android:height="300dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="100dp" />
+        android:textSize="100dp"
+        android:backgroundTint="@color/design_textinput_error_color_light"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/button3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Verified"
+        android:id="@+id/button3"
+        android:layout_alignRight="@+id/button2"
+        android:layout_alignEnd="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:height="100dp"
+        android:textSize="32dp" />
 </RelativeLayout>

@@ -2,4 +2,5 @@
     <string name="app_name">Minutemen</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
 </resources>
