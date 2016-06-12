@@ -37,6 +37,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:height="100dp"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:onClick="displayRegistration" />
 </RelativeLayout>
