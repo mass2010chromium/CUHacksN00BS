@@ -41,8 +41,8 @@ public class StartActivity extends AppCompatActivity
             Log.i("idk", "Pushing position: " + loc.getLatitude() + ", " + loc.getLongitude());
             Utils.helpRef.push().setValue(new double[] {loc.getLatitude(), loc.getLongitude()});
         }
-//        Intent intent = new Intent(this, MapsActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, HelpOnWay.class);
+        startActivity(intent);
 
 //        //Temp must change later
 //        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
