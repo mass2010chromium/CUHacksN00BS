@@ -37,6 +37,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+<<<<<<< HEAD
+        <!-- <activity -->
+        <!-- android:name=".MapsActivity" -->
+        <!-- android:label="@string/title_activity_maps"></activity> -->
+        <activity android:name=".StartActivity"></activity>
+=======
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
@@ -44,6 +50,7 @@
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+>>>>>>> 6c324d696d394ef2aefcd3d41e17b88d7080ea8f
     </application>
 
 </manifest>
