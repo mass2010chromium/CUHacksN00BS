@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Standby"
+        android:text="Someone needs your help!"
         android:id="@+id/standbytextbox"
         android:textSize="48sp"
         android:textAlignment="center"
@@ -25,10 +25,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Waiting for people needing help"
+        android:text="Click to accept or decline."
         android:id="@+id/peoplehelptextbox"
         android:textSize="20sp"
         android:layout_below="@+id/standbytextbox"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accept"
+        android:id="@+id/accept"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decline"
+        android:id="@+id/decline"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/standbytextbox"
+        android:layout_alignEnd="@+id/standbytextbox" />
 </RelativeLayout>
