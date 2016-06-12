@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +16,21 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import app.minutemen.map.MapWrapper;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private MapWrapper map;
+
+    private int num;
+
+    private DatabaseReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +39,36 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        num = 0;
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        ref = database.getReference("minutemen");
+
+        ref.setValue(num);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.println(Log.INFO, "idk", dataSnapshot.getValue().toString());
+                try {
+                    num = Integer.parseInt(dataSnapshot.getValue().toString());
+                } catch (Exception e) {
+                    Log.println(Log.INFO, "WTH", "Value was not an int!");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                ref.setValue(num + 1);
+                Snackbar.make(view, "Clicks: " + num, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
