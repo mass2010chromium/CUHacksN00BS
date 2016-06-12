@@ -6,9 +6,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class RegistrationActivity extends AppCompatActivity {
-
+    public boolean nameComplete = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,14 @@ public class RegistrationActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        TextView editText = Utils.getComponent(R.id.editText, this);
+        Button done = Utils.getComponent(R.id.doneButton, this);
+        done.setOnClickListener();
+    }
+
+    public void onClick(View v){
+
     }
 
 }

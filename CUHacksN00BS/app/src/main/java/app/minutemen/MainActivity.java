@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = getComponent(R.id.toolbar);
+        Toolbar toolbar = Utils.getComponent(R.id.toolbar, this);
         setSupportActionBar(toolbar);
 
         num = 0;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        FloatingActionButton fab = getComponent(R.id.fab);
+        FloatingActionButton fab = Utils.getComponent(R.id.fab, this);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,10 +96,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public <T> T getComponent(int id) {
-        return (T) findViewById(id);
     }
 
 

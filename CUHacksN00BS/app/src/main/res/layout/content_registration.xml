@@ -33,4 +33,86 @@
         android:layout_alignTop="@+id/nameLabel"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Areas Trained"
+        android:id="@+id/areasLabel"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adult CPR"
+        android:id="@+id/adultCheckBox"
+        android:checked="false"
+        android:layout_below="@+id/areasLabel"
+        android:layout_alignLeft="@+id/childCheckBox"
+        android:layout_alignStart="@+id/childCheckBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Child CPR"
+        android:id="@+id/childCheckBox"
+        android:checked="false"
+        android:layout_below="@+id/adultCheckBox"
+        android:layout_toRightOf="@+id/nameLabel"
+        android:layout_toEndOf="@+id/nameLabel" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Infant CPR"
+        android:id="@+id/infantCheckBox"
+        android:checked="false"
+        android:layout_below="@+id/childCheckBox"
+        android:layout_toRightOf="@+id/nameLabel"
+        android:layout_toEndOf="@+id/nameLabel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Recommended Renwal Date:"
+        android:id="@+id/renewalText"
+        android:layout_below="@+id/infantCheckBox"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="37dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/dateText"
+        android:layout_below="@+id/renewalText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Register Yourself"
+        android:id="@+id/registrationTitle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:id="@+id/doneButton"
+        android:layout_below="@+id/dateText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp" />
+
 </RelativeLayout>
