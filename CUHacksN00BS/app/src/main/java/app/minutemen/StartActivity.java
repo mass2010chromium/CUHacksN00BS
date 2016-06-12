@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -57,14 +58,14 @@ public class StartActivity extends AppCompatActivity
 
     public void callHelp(View view) {
 //        updateLocation();
-        Location loc = tracker.getLocation();
-        if (loc != null) {
-            Log.i("idk", "Pushing position: " + loc.getLatitude() + ", " + loc.getLongitude());
-            Utils.helpRef.push().setValue(new double[] {loc.getLatitude(), loc.getLongitude()});
-        }
-        else {
-            Log.i("idk", "Location Fail");
-        }
+//        Location loc = tracker.getLocation();
+//        if (loc != null) {
+//            Log.i("idk", "Pushing position: " + loc.getLatitude() + ", " + loc.getLongitude());
+//            Utils.helpRef.push().setValue(new double[] {loc.getLatitude(), loc.getLongitude()});
+//        }
+//        else {
+//            Log.i("idk", "Location Fail");
+//        }
         Intent intent = new Intent(this, HelpOnWay.class);
         startActivity(intent);
 
@@ -86,13 +87,19 @@ public class StartActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot child : children) {
-                    DataSnapshot lat = child.child("lat");
-                    DataSnapshot lon = child.child("lon");
 
-                    Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat.getValue() + "," + lon.getValue());
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                    mapIntent.setPackage("com.google.android.apps.maps");
-                    startActivity(mapIntent);
+                    if (child.getKey().toString().startsWith("none")) {
+                        String newID = child.getKey().toString().substring(4);
+                        Utils.helpRef.child(child.getKey()).setValue(newID);
+                        Utils.helpRef.child(newID).child("helper").setValue(Settings.Secure.ANDROID_ID);
+                        DataSnapshot lat = child.child("lat");
+                        DataSnapshot lon = child.child("lon");
+                        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat.getValue() + "," + lon.getValue());
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                        mapIntent.setPackage("com.google.android.apps.maps");
+                        startActivity(mapIntent);
+                        break;
+                    }
                 }
             }
 

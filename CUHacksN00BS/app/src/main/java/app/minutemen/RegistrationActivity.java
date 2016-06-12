@@ -2,6 +2,7 @@ package app.minutemen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -58,7 +59,9 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Write each component to firebase.
-                DatabaseReference ref = Utils.userRef.child(name.getText().toString());
+                DatabaseReference ref = Utils.userRef.child(Settings.Secure.ANDROID_ID);
+                DatabaseReference id = ref.child("name");
+                id.setValue(name.getText().toString());
                 DatabaseReference adultRef = ref.child("adult");
                 adultRef.setValue(aToggle.clicked);
                 DatabaseReference childRef = ref.child("child");
