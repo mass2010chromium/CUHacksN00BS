@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.security.Permission;
@@ -103,7 +104,7 @@ public class GPSTracker extends Service implements LocationListener {
                         }
                         else {
                             Log.i("idk", "No perms!");
-                            Utils.requestPermission(this.mContext, 1,
+                            Utils.requestPermission((AppCompatActivity) this.mContext, 1,
                                     Manifest.permission.ACCESS_FINE_LOCATION, true);
                         }
                     }
