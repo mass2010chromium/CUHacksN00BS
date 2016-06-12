@@ -30,10 +30,14 @@ public class StartActivity extends AppCompatActivity
     GPSTracker tracker;
 //    GoogleApiClient client;
 
+    private StartActivity inst;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        inst = this;
 
         //TODO FAIL
 //        tracker = new GPSTracker(this);
@@ -54,6 +58,34 @@ public class StartActivity extends AppCompatActivity
 //            }
 //        });
 //        connectThread.start();
+
+        Utils.helpRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for (DataSnapshot child : children) {
+
+                    if (child.getKey().toString().startsWith("none")) {
+                        if (child.child("lat").getValue() == null) continue;
+                        String lat = child.child("lat").getValue().toString();
+                        String lon = child.child("lon").getValue().toString();
+                        String newID = child.getKey().toString().substring(4);
+                        Utils.helpRef.child(child.getKey()).setValue(newID);
+                        Utils.helpRef.child(newID).child("helper").setValue(Settings.Secure.ANDROID_ID);
+                        WaitActivity.lat = lat;
+                        WaitActivity.lon = lon;
+                        Intent intent = new Intent(inst, WaitActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void callHelp(View view) {
@@ -78,38 +110,6 @@ public class StartActivity extends AppCompatActivity
 
     public void displayRegistration(View view){
         Intent intent = new Intent(this, RegistrationActivity.class);
-        startActivity(intent);
-    }
-
-    public void standby(View view) {
-        Utils.helpRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-                for (DataSnapshot child : children) {
-
-                    if (child.getKey().toString().startsWith("none")) {
-                        if (child.child("lat").getValue() == null) continue;
-                        String lat = child.child("lat").getValue().toString();
-                        String lon = child.child("lon").getValue().toString();
-                        String newID = child.getKey().toString().substring(4);
-                        Utils.helpRef.child(child.getKey()).setValue(newID);
-                        Utils.helpRef.child(newID).child("helper").setValue(Settings.Secure.ANDROID_ID);
-                        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat + "," + lon);
-                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                        mapIntent.setPackage("com.google.android.apps.maps");
-                        startActivity(mapIntent);
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        Intent intent = new Intent(this, WaitActivity.class);
         startActivity(intent);
     }
 
