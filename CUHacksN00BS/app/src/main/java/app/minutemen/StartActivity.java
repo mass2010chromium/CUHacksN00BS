@@ -66,7 +66,7 @@ public class StartActivity extends AppCompatActivity
                 for (DataSnapshot child : children) {
 
                     if (child.getKey().toString().startsWith("none")) {
-                        if (child.child("lat").getValue() == null) continue;
+                        if (child.child("lat").getValue() == null || child.child("lon").getValue() == null) continue;
                         String lat = child.child("lat").getValue().toString();
                         String lon = child.child("lon").getValue().toString();
                         String newID = child.getKey().toString().substring(4);
