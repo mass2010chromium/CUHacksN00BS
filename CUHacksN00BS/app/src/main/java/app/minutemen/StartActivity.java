@@ -89,11 +89,11 @@ public class StartActivity extends AppCompatActivity
                 for (DataSnapshot child : children) {
 
                     if (child.getKey().toString().startsWith("none")) {
+                        DataSnapshot lat = child.child("lat");
+                        DataSnapshot lon = child.child("lon");
                         String newID = child.getKey().toString().substring(4);
                         Utils.helpRef.child(child.getKey()).setValue(newID);
                         Utils.helpRef.child(newID).child("helper").setValue(Settings.Secure.ANDROID_ID);
-                        DataSnapshot lat = child.child("lat");
-                        DataSnapshot lon = child.child("lon");
                         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat.getValue() + "," + lon.getValue());
                         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                         mapIntent.setPackage("com.google.android.apps.maps");
