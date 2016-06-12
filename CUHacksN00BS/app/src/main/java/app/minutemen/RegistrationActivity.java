@@ -75,7 +75,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     //TEMP
-    public void switchActivity(){
+    public void switchActivity() {
         Intent intent = new Intent(this, VerificationCompletion.class);
         startActivity(intent);
     }
