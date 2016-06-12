@@ -1,6 +1,8 @@
 package app.minutemen;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -25,17 +27,6 @@ public class Utils {
     static {
         userRef = database.getReference("minutemen");
         helpRef = database.getReference("minutemenHelp");
-        helpRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot.getChildren();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 
     public static <T> T getComponent(int id, AppCompatActivity activity) {

@@ -18,6 +18,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.drive.Permission;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class StartActivity extends AppCompatActivity
 //        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
@@ -30,7 +33,9 @@ public class StartActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        tracker = new GPSTracker(this);
+
+        //TODO FAIL
+//        tracker = new GPSTracker(this);
 //        client = new GoogleApiClient.Builder(this).addConnectionCallbacks(this)
 //                .addOnConnectionFailedListener(this).addApi(LocationServices.API)
 //                .build();
@@ -48,6 +53,26 @@ public class StartActivity extends AppCompatActivity
 //            }
 //        });
 //        connectThread.start();
+        Utils.helpRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                for (DataSnapshot child : children) {
+                    DataSnapshot lat = child.child("lat");
+                    DataSnapshot lon = child.child("lon");
+
+                    Uri gmmIntentUri = Uri.parse("google.navigation:q=" + lat.getValue() + "," + lon.getValue());
+                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                    mapIntent.setPackage("com.google.android.apps.maps");
+                    startActivity(mapIntent);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void callHelp(View view) {
