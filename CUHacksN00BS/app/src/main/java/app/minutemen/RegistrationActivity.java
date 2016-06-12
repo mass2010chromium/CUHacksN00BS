@@ -29,7 +29,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         TextView editText = Utils.getComponent(R.id.editText, this);
         Button done = Utils.getComponent(R.id.doneButton, this);
-        done.setOnClickListener();
+
     }
 
     public void onClick(View v){
