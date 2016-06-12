@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.minutemen.MainActivity"
-    tools:showIn="@layout/content_main">
+    tools:context="app.minutemen.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -49,8 +48,9 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="app.minutemen.MapsActivity"
-            android:layout_below="@+id/space" />
+            tools:context="app.minutemen.MainActivity"
+            android:layout_below="@+id/space"
+            tools:layout="@layout/content_main" />
 
     </RelativeLayout>
     <!--<fragment-->

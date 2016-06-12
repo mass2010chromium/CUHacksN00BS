@@ -1,5 +1,7 @@
 package app.minutemen;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,23 +12,15 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import app.minutemen.map.MapWrapper;
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    private MapWrapper map;
+//    private MapWrapper map;
 
     private int num;
 
@@ -36,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = getComponent(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         num = 0;
@@ -62,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = getComponent(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,9 +66,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -113,13 +112,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        map = new MapWrapper(googleMap);
-
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-    }
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        map = new MapWrapper(googleMap);
+//
+//        // Add a marker in Sydney and move the camera
+////        LatLng sydney = new LatLng(-34, 151);
+////        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+////        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//    }
 }
