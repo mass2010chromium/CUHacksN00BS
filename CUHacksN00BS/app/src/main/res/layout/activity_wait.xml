@@ -21,32 +21,29 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Click to accept or decline."
-        android:id="@+id/peoplehelptextbox"
-        android:textSize="20sp"
-        android:layout_below="@+id/standbytextbox"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
-
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
         android:text="Accept"
         android:id="@+id/accept"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="36dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/holo_green_dark"
+        android:layout_below="@+id/standbytextbox"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#ffffff" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
         android:text="Decline"
         android:id="@+id/decline"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/standbytextbox"
-        android:layout_alignEnd="@+id/standbytextbox" />
+        android:textSize="36dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_red_dark"
+        android:layout_below="@+id/accept"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#ffffff" />
 </RelativeLayout>
