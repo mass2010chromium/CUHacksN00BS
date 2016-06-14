@@ -2,9 +2,6 @@ package app.minutemen;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,7 +12,6 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 
 public class RegistrationActivity extends AppCompatActivity {
-    public boolean nameComplete = false;
 
     EditText name;
     CheckBox adult;
@@ -50,7 +46,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Write each component to firebase.
-                DatabaseReference ref = Utils.userRef.child(Settings.Secure.ANDROID_ID);
+                DatabaseReference ref = Utils.userRef.child(StartActivity.inst.ID);
                 DatabaseReference id = ref.child("name");
                 id.setValue(name.getText().toString());
                 DatabaseReference adultRef = ref.child("adult");

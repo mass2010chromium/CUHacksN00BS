@@ -27,15 +27,18 @@ public class StartActivity extends AppCompatActivity
 //        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
 {
 
+    public String ID;
     GPSTracker tracker;
 //    GoogleApiClient client;
 
-    private StartActivity inst;
+    public static StartActivity inst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        ID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         inst = this;
 
