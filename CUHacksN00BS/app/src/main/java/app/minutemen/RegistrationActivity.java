@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -23,8 +26,25 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText expire;
     Button done;
 
+    public static String userName;
+
+    public static void updateName() {
+        Utils.userRef.child(StartActivity.inst.ID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild("name")) {
+                    userName = dataSnapshot.child("name").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        userName = "NULL";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,6 +69,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 DatabaseReference ref = Utils.userRef.child(StartActivity.inst.ID);
                 DatabaseReference id = ref.child("name");
                 id.setValue(name.getText().toString());
+                userName = name.getText().toString();
                 DatabaseReference adultRef = ref.child("adult");
                 adultRef.setValue(aToggle.clicked);
                 DatabaseReference childRef = ref.child("child");

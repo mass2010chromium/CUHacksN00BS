@@ -1,8 +1,14 @@
 package app.minutemen;
 
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,5 +42,14 @@ public class Utils {
             ActivityCompat.requestPermissions(activity, new String[]{permission}, requestId);
 
         }
+    }
+
+    static volatile Location loc;
+
+    public static LocationRunnable getLocation(GoogleApiClient client, Activity inst, IRecieveLocation locHandler) {
+        LocationRunnable running = new LocationRunnable(client, inst, locHandler);
+        Thread thread = new Thread(running);
+        thread.start();
+        return running;
     }
 }

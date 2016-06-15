@@ -8,15 +8,25 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="app.minutemen.StartActivity"
-    android:background="@drawable/city">
+    android:background="@drawable/city"
+    android:keepScreenOn="true">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/debugPos"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SEND HELP"
+        android:text="@string/send_help"
         android:id="@+id/helpbutton"
         android:height="300dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -25,18 +35,19 @@
         android:backgroundTint="@color/design_textinput_error_color_light"
         android:textColor="#ffffff"
         android:layout_above="@+id/verifybutton"
-        android:onClick="callHelp" />
+        android:onClick="callHelp"
+        android:layout_below="@+id/debugPos" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Register as CPR Trained"
+        android:text="@string/register_as_cpr_trained"
         android:id="@+id/verifybutton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:height="100dp"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:onClick="displayRegistration" />
 
 </RelativeLayout>
