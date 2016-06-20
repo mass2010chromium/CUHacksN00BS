@@ -20,6 +20,8 @@ public class WaitActivity extends AppCompatActivity {
     public static double distance;
     public static String toHelp;
 
+    public static boolean accepted;
+
     private TextView distText;
 
     private DatabaseReference ref;
@@ -32,7 +34,7 @@ public class WaitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wait);
 
         distText = Utils.getComponent(R.id.distance, this);
-        distText.setText(distance + "m");
+        distText.setText(formatter.format(distance) + "m");
     }
 
     @Override
@@ -40,22 +42,18 @@ public class WaitActivity extends AppCompatActivity {
         super.onStart();
         ref = Utils.helpRef.child(toHelp);
         RegistrationActivity.updateName();
+        accepted = false;
     }
 
     //TODO
     public void onDecline(View v) {
-        DatabaseReference reference = Utils.helpRef.child("none" + ref.getKey().substring(4));
-        ref.setValue(null);
-        reference.child("lat").setValue(lat);
-        reference.child("lon").setValue(lon);
-        reference.child(StartActivity.inst.ID).setValue("Ditched.");
         Intent intent = new Intent(this, StartActivity.class);
         startActivity(intent);
     }
 
     //TODO
     public void onAccept(View v) {
-
+        accepted = true;
         DatabaseReference reference = Utils.helpRef.child(ref.getKey().substring(4));
         ref.setValue(null);
         reference.child("lat").setValue(lat);
@@ -72,9 +70,12 @@ public class WaitActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        DatabaseReference reference = Utils.helpRef.child("none" + ref.getKey().substring(4));
-        ref.setValue(null);
-        reference.child("lat").setValue(lat);
-        reference.child("lon").setValue(lon);
+        if (!accepted) {
+            DatabaseReference reference = Utils.helpRef.child("none" + ref.getKey().substring(4));
+            ref.setValue(null);
+            reference.child("lat").setValue(lat);
+            reference.child("lon").setValue(lon);
+            reference.child(StartActivity.inst.ID).setValue("Ditched.");
+        }
     }
 }

@@ -116,7 +116,7 @@ public class StartActivity extends AppCompatActivity  implements
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        debugPos.setText("Connected");
+        textMessage = "Connected";
         waitingForLocation = false;
         Thread updateLocationThread = new Thread(new Runnable() {
 

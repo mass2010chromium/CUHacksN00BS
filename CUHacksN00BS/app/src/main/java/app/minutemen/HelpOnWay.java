@@ -44,6 +44,8 @@ public class HelpOnWay extends AppCompatActivity {
     public void onStart() {
         super.onStart();
 
+        hasHelp = false;
+
         postLocation();
 
         Utils.helpRef.addValueEventListener(new ValueEventListener() {
