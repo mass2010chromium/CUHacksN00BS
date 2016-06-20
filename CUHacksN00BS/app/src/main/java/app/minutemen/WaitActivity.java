@@ -34,7 +34,7 @@ public class WaitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wait);
 
         distText = Utils.getComponent(R.id.distance, this);
-        distText.setText("They are " + formatter.format(distance) + "meters away");
+        distText.setText("They are " + formatter.format(distance) + " meters away");
     }
 
     @Override
