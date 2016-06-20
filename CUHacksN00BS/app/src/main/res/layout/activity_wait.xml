@@ -28,7 +28,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/distance"
         android:id="@+id/distance"
-        android:textSize="48sp"
+        android:textSize="20sp"
         android:textAlignment="center"
         android:layout_below="@+id/standbytextbox"
         android:layout_centerHorizontal="true" />
