@@ -1,7 +1,5 @@
 package app.minutemen;
 
-import android.*;
-import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -13,14 +11,14 @@ import com.google.android.gms.location.LocationServices;
 /**
  * Created by jcpen on 6/14/2016.
  */
-public class LocationRunnable implements Runnable{
+class LocationRunnable implements Runnable{
 
     private GoogleApiClient client;
     private Activity inst;
-    private IRecieveLocation locHandler;
+    private IReceiveLocation locHandler;
     private boolean started;
 
-    public LocationRunnable(GoogleApiClient client, Activity inst, IRecieveLocation locHandler) {
+    LocationRunnable(GoogleApiClient client, Activity inst, IReceiveLocation locHandler) {
         this.client = client;
         this.inst = inst;
         this.locHandler = locHandler;
@@ -68,7 +66,7 @@ public class LocationRunnable implements Runnable{
         started = false;
     }
 
-    public boolean isStarted() {
+    boolean isStarted() {
         return started;
     }
 }

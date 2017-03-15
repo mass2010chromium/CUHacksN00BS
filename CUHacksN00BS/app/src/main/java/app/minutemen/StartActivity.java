@@ -22,14 +22,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StartActivity extends AppCompatActivity  implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        IRecieveLocation {
+        IReceiveLocation {
 
     public String ID;
 
     public static StartActivity inst;
     public static Class<? extends Activity> currentActivity;
 
-    public volatile ValueEventListener recieveMSG;
+    public volatile ValueEventListener receiveMSG;
 
     public volatile static Location loc;
     public volatile static boolean waitingForLocation;
@@ -158,15 +158,15 @@ public class StartActivity extends AppCompatActivity  implements
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.hasChild(ID)) return;
-                if (recieveMSG != null) Utils.helpRef.removeEventListener(recieveMSG);
-                Utils.helpRef.addValueEventListener(recieveMSG = new ValueEventListener() {
+                if (receiveMSG != null) Utils.helpRef.removeEventListener(receiveMSG);
+                Utils.helpRef.addValueEventListener(receiveMSG = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (currentActivity != StartActivity.class) return;
                         Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                         for (DataSnapshot child : children) {
 
-                            if (child.getKey().toString().startsWith("none")) {
+                            if (child.getKey().startsWith("none")) {
                                 if (child.hasChild(inst.ID)) continue;
                                 if (child.child("lat").getValue() == null || child.child("lon").getValue() == null)
                                     continue;

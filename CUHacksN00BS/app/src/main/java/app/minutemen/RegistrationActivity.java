@@ -93,9 +93,9 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private static class ButtonToggle implements View.OnClickListener{
 
-        public boolean clicked;
+        boolean clicked;
 
-        public ButtonToggle(CheckBox box, boolean state) {
+        ButtonToggle(CheckBox box, boolean state) {
             box.setOnClickListener(this);
             this.clicked = state;
         }

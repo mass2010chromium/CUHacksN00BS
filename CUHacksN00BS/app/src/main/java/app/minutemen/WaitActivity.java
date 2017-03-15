@@ -2,7 +2,6 @@ package app.minutemen;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,8 +21,6 @@ public class WaitActivity extends AppCompatActivity {
 
     public static boolean accepted;
 
-    private TextView distText;
-
     private DatabaseReference ref;
 
     private static final DecimalFormat formatter = new DecimalFormat("#####");
@@ -33,7 +30,7 @@ public class WaitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wait);
 
-        distText = Utils.getComponent(R.id.distance, this);
+        TextView distText = Utils.getComponent(R.id.distance, this);
         distText.setText("They are " + formatter.format(distance) + " meters away");
     }
 
